@@ -90,7 +90,7 @@ public class TableProviderClass implements TableProvider {
 
     @Override
     public List<String> getTableNames() {
-        return null;
+        return (List<String>) tables.keySet();
     }
 
     public void put(String tmp, CurrentTable ct) {

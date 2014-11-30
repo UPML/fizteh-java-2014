@@ -12,6 +12,10 @@ import java.util.List;
 public class TableContents implements Storeable {
     private Object[] fields;
 
+    public Object[] getFields() {
+        return fields;
+    }
+
     public TableContents(List<Object> values) {
         fields = values.toArray();
     }
