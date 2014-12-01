@@ -32,6 +32,7 @@ public class testTable {
     public String dbDirPath;
     List<Class<?>> types;
 
+
     @Before
     public void initTable() throws IOException {
         tmpFolder.create();
