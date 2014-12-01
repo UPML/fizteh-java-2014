@@ -5,7 +5,6 @@ import ru.fizteh.fivt.storage.structured.Storeable;
 import ru.fizteh.fivt.storage.structured.Table;
 import ru.fizteh.fivt.storage.structured.TableProvider;
 import ru.fizteh.fivt.students.gudkov394.Parallel.ParallelTable;
-import ru.fizteh.fivt.students.gudkov394.Storable.src.CurrentTable;
 
 import java.io.IOException;
 import java.util.List;
@@ -53,7 +52,7 @@ public class TableWithCloseAndToString extends ParallelTable implements Table, A
         if (tmp == null) {
             return null;
         } else {
-            return new StorableWithToString(tmp);
+            return new StoreableWithToString(tmp);
         }
     }
 
@@ -64,7 +63,7 @@ public class TableWithCloseAndToString extends ParallelTable implements Table, A
         if (tmp == null) {
             return null;
         } else {
-            return new StorableWithToString(tmp);
+            return new StoreableWithToString(tmp);
         }
     }
 
@@ -123,7 +122,7 @@ public class TableWithCloseAndToString extends ParallelTable implements Table, A
         if (tmp == null) {
             return null;
         } else {
-            return new StorableWithToString(tmp);
+            return new StoreableWithToString(tmp);
         }
     }
 

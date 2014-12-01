@@ -9,10 +9,10 @@ import java.util.ArrayList;
 /**
  * Created by kagudkov on 30.11.14.
  */
-public class StorableWithToString implements Storeable {
+public class StoreableWithToString implements Storeable {
 
     Storeable origin;
-    public StorableWithToString(Storeable tmp) {
+    public StoreableWithToString(Storeable tmp) {
         origin = tmp;
     }
     public Storeable getStoreable() {
@@ -35,7 +35,7 @@ public class StorableWithToString implements Storeable {
 
     @Override
     public Long getLongAt(int columnIndex) throws ColumnFormatException, IndexOutOfBoundsException {
-        return getLongAt(columnIndex);
+        return origin.getLongAt(columnIndex);
     }
 
     @Override

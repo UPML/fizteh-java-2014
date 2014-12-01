@@ -1,12 +1,10 @@
 package ru.fizteh.fivt.students.gudkov394.Proxy;
 
-import javafx.scene.control.Tab;
 import ru.fizteh.fivt.storage.structured.ColumnFormatException;
 import ru.fizteh.fivt.storage.structured.Storeable;
 import ru.fizteh.fivt.storage.structured.Table;
 import ru.fizteh.fivt.storage.structured.TableProvider;
 import ru.fizteh.fivt.students.gudkov394.Parallel.ParallelTableProvider;
-import ru.fizteh.fivt.students.gudkov394.Storable.src.TableContents;
 
 import java.io.IOException;
 import java.text.ParseException;
@@ -49,7 +47,7 @@ public class TableProviderWithToStringAndClose extends ParallelTableProvider imp
         checkIsClosed();
         lock.writeLock().lock();
         closed.set(true);
-        for(Table table : tables.values()) {
+        for (Table table : tables.values()) {
             try {
                 ((TableWithCloseAndToString) table).close();
             } catch (IllegalFormatException e) {
@@ -64,7 +62,7 @@ public class TableProviderWithToStringAndClose extends ParallelTableProvider imp
         checkIsClosed();
         lock.readLock().lock();
         try {
-            Table origin =  providerFromStoreable.getTable(name);
+            Table origin = providerFromStoreable.getTable(name);
             if (origin == null) {
                 return null;
             }
@@ -76,6 +74,8 @@ public class TableProviderWithToStringAndClose extends ParallelTableProvider imp
                 }
                 return tables.get(name);
             }
+        } catch (IllegalArgumentException e) {
+            throw e;
         } finally {
             lock.readLock().unlock();
         }
@@ -86,7 +86,7 @@ public class TableProviderWithToStringAndClose extends ParallelTableProvider imp
         checkIsClosed();
         lock.writeLock().lock();
         try {
-            Table origin =  providerFromStoreable.createTable(name, columnTypes);
+            Table origin = providerFromStoreable.createTable(name, columnTypes);
             if (origin == null) {
                 return null;
             } else {
@@ -120,13 +120,13 @@ public class TableProviderWithToStringAndClose extends ParallelTableProvider imp
 
     @Override
     public Storeable createFor(Table table) {
-        return null;
+        return new StoreableWithToString(super.createFor(table));
     }
 
     @Override
     public Storeable createFor(Table table, List<?> values) throws ColumnFormatException, IndexOutOfBoundsException {
         checkIsClosed();
-        return new StorableWithToString(super.createFor(table));
+        return new StoreableWithToString(super.createFor(table, values));
     }
 
     @Override

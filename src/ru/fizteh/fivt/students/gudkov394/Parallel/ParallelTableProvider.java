@@ -18,7 +18,7 @@ import java.util.concurrent.locks.ReentrantReadWriteLock;
  * Created by kagudkov on 17.11.14.
  */
 public class ParallelTableProvider implements TableProvider {
-    protected TableProviderClass providerFromStoreable = null;
+    public TableProviderClass providerFromStoreable = null;
     protected ReentrantReadWriteLock lock = null;
     protected Map<String, ReentrantReadWriteLock> lockForTable = null;
     String path;
@@ -96,7 +96,7 @@ public class ParallelTableProvider implements TableProvider {
 
     @Override
     public List<String> getTableNames() {
-        return null;
+        return providerFromStoreable.getTableNames();
     }
 
     protected String getPath() {
